@@ -1,19 +1,21 @@
 import { createApp } from 'vue';
 import axios from 'axios';
 
+const COURSE_EXAMPLE = {
+  USD: {
+    rateBuy: 5,
+    rateSell: 10,
+  },
+  EUR: {
+    rateBuy: 5,
+    rateSell: 10,
+  },
+};
+
 createApp({
   data() {
     return {
-      course: {
-        USD: {
-          rateBuy: 5,
-          rateSell: 10,
-        },
-        EUR: {
-          rateBuy: 5,
-          rateSell: 10,
-        },
-      },
+      course: COURSE_EXAMPLE,
       value: 0,
       amountToUah: 0,
       toUah: 0,
