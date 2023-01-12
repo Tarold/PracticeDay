@@ -1,35 +1,61 @@
 import { createApp } from 'vue';
 import axios from 'axios';
-import VueAxios from 'vue-axios';
 
 createApp({
   data() {
     return {
-      students: [],
-      newmark: '',
-      newgroup: '',
-      newisDonePr: '',
-      newname: '',
-      search: '',
-      piece: '',
-      student: { name: '', isDonePr: false, group: '' },
+      course: {
+        USD: {
+          rateBuy: 5,
+          rateSell: 10,
+        },
+        EUR: {
+          rateBuy: 5,
+          rateSell: 10,
+        },
+      },
+      value: 0,
+      amountToUah: 0,
+      toUah: 0,
+      amountFromUah: 0,
+      fromUah: 0,
+      from: 'EUR',
+      to: 'USD',
     };
   },
   mounted: function () {
-    axios.get('http://34.82.81.113:3000/students').then((response) => {
-      console.log('response.data', response.data);
-      this.students = response.data;
-    });
+    axios
+      .get('https://api.monobank.ua/bank/currency')
+      .then((response) => {
+        this.course = {
+          USD: {
+            rateBuy: response.data[0].rateBuy,
+            rateSell: response.data[0].rateSell,
+          },
+          EUR: {
+            rateBuy: response.data[1].rateBuy,
+            rateSell: response.data[1].rateSell,
+          },
+        };
+      })
+      .catch((err) => console.log('err', err));
   },
   methods: {
-    deleteStudent(studId) {
-      this.students = this.students.filter((elem) => {
-        return elem._id != studId;
-      });
+    countTo() {
+      const { EUR, USD } = this.course;
+      const { amountToUah, from } = this;
+      this.toUah =
+        from === 'EUR'
+          ? EUR.rateSell * amountToUah
+          : USD.rateSell * amountToUah;
     },
-    addStudent() {
-      this.student._id = this.students.length + 1;
-      this.students.push({ ...this.student });
+    countFrom() {
+      const { EUR, USD } = this.course;
+      const { amountFromUah, to } = this;
+      this.fromUah =
+        to === 'EUR'
+          ? amountFromUah / EUR.rateBuy
+          : amountFromUah / USD.rateBuy;
     },
   },
 }).mount('#app');
