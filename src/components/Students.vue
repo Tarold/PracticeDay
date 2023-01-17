@@ -1,8 +1,8 @@
 <script>
 import axios from 'axios';
-import Student from './Student.vue';
-import EditStudent from './EditStudent.vue';
-import AddStudent from './AddStudent.vue';
+import Student from './StudentsList/Student.vue';
+import EditStudent from './StudentsList/EditStudent.vue';
+import AddStudent from './StudentsList/AddStudent.vue';
 
 const DEFAULT_STUDENT = { pib: '', zdav: false, group: '' };
 
@@ -73,7 +73,7 @@ export default {
 
 <template>
   <div>
-    <input type="text" name="search" v-model="search" /><br />
+    <label> Пошук: <input type="text" name="search" v-model="search" /></label>
     <table class="table table-dark">
       <tr v-for="(item, key) in students" v-bind:key="item._id">
         <Student

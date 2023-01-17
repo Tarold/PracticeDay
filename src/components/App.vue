@@ -6,3 +6,10 @@
     </div>
   </div>
 </template>
+
+<style>
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+</style>
