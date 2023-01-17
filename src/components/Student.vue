@@ -6,7 +6,12 @@ export default {
 
 <template>
   <td :style="search ? 'color: red;' : ''">
-    {{ item.name }}
+    <router-link
+      v-bind:to="'/student-info/' + item._id"
+      :style="search ? 'color: red;' : ''"
+    >
+      {{ item.name }}
+    </router-link>
   </td>
   <td>
     <input type="checkbox" v-model="item.isDonePr" onclick="return false;" />
