@@ -5,6 +5,7 @@ import EditStudent from './StudentsList/EditStudent.vue';
 import AddStudent from './StudentsList/AddStudent.vue';
 
 const DEFAULT_STUDENT = { pib: '', zdav: false, group: '' };
+const API_HOST = process.env.API_HOST;
 
 export default {
   components: {
@@ -26,20 +27,20 @@ export default {
     };
   },
   mounted: function () {
-    axios.get('http://34.82.81.113:3000/students').then((response) => {
+    axios.get(API_HOST + '/students').then((response) => {
       console.log(response.data);
       this.students = response.data;
     });
   },
   methods: {
     deleteStudent(Id) {
-      axios.delete(`http://34.82.81.113:3000/students/${Id}`).then(() => {
+      axios.delete(API_HOST + `/students/${Id}`).then(() => {
         this.students = this.students.filter((st) => st._id != Id);
       });
     },
     addStudent() {
       axios
-        .post('http://34.82.81.113:3000/students', {
+        .post(API_HOST + '/students', {
           ...this.addingStudent,
         })
         .then((response) => {
@@ -48,14 +49,14 @@ export default {
         });
     },
     startEdit(Id) {
-      axios.get(`http://34.82.81.113:3000/students/${Id}`).then((response) => {
+      axios.get(API_HOST + `/students/${Id}`).then((response) => {
         this.edittingStudent = response.data;
         this.editId = Id;
       });
     },
     editStudent(key) {
       axios
-        .put(`http://34.82.81.113:3000/students/${this.editId}`, {
+        .put(API_HOST + `/students/${this.editId}`, {
           ...this.edittingStudent,
         })
         .then((response) => {
