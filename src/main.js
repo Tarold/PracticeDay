@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
 import App from './components/App.vue';
-import StudentInfo from './components/StudentInfo.vue';
+import WeatherShow from './components/WeatherShow.vue';
 import Weather from './components/Weather.vue';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -15,7 +15,7 @@ library.add(faTrash, faPen);
 
 const routes = [
   { path: '/', component: Weather },
-  { path: '/student-info/:id', component: StudentInfo, props: true },
+  { path: '/WeatherShow/', component: WeatherShow, props: true },
 ];
 
 const router = createRouter({
