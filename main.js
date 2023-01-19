@@ -4,12 +4,12 @@ const checkbox = document.getElementById('isDark');
 
 Init();
 
-function changeTheme(e) {
+function changeTheme() {
   localStorage.setItem('isDark', checkbox.checked);
-  reDraw();
+  show();
 }
 
-function reDraw() {
+function show() {
   if (localStorage.getItem('isDark') != 'true') {
     body.className = 'body-dark';
     container.classList.toggle('container-dark');
@@ -22,5 +22,5 @@ function reDraw() {
 }
 
 function Init() {
-  reDraw();
+  show();
 }
