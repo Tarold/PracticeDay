@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.body-light {
+  background-color: rgb(58, 58, 58);
+}
+.container-light {
+  background-color: rgb(196, 196, 196);
+}
+
+.body-dark {
+  background-color: rgb(254, 255, 196);
+}
+.container-dark {
+  background-color: rgb(212, 163, 0);
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  padding: 10px;
+  margin-top: 40px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 0.5rem;
+}
