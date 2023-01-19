@@ -4,6 +4,9 @@ import App from './components/App.vue';
 import WeatherGet from './components/WeatherGet.vue';
 import Weather from './components/Weather.vue';
 
+import axios from 'axios';
+import VueAxios from 'vue-axios';
+
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
@@ -15,9 +18,6 @@ import {
   faAudioDescription,
   faWarning,
 } from '@fortawesome/free-solid-svg-icons';
-
-import axios from 'axios';
-import VueAxios from 'vue-axios';
 
 library.add(
   faDroplet,
