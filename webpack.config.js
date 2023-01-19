@@ -40,6 +40,7 @@ module.exports = {
     static: path.join(__dirname, 'src'),
     compress: true,
     port: 8080,
+    https: true,
   },
   plugins: [
     new webpack.DefinePlugin({
