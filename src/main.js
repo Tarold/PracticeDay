@@ -15,7 +15,7 @@ library.add(faTrash, faPen);
 
 const routes = [
   { path: '/', component: Weather },
-  { path: '/WeatherShow/', component: WeatherShow, props: true },
+  { path: '/WeatherShow/:city', component: WeatherShow, props: true },
 ];
 
 const router = createRouter({

@@ -38,6 +38,7 @@ export default {
     return {
       weather: { ...DEFAULT_WEATHER },
       addCity: '',
+      selectedCity: '',
       cities: [],
     };
   },
@@ -54,7 +55,6 @@ export default {
   methods: {
     AddCity() {
       //TODO this.addCity is ''
-      //localStorage.clear();
       this.cities.push(this.addCity);
       localStorage.setItem('cities', JSON.stringify(this.cities));
       this.addCity = '';
@@ -66,14 +66,14 @@ export default {
 <template>
   <div>
     <div>
-      <input type="text" :value="addCity" />
+      <input type="text" v-model="addCity" />
       <button @click="AddCity">Add</button>
     </div>
     <div>
-      <select name="select">
-        <option v-for="city in cities" :value="city">{{ city }}</option>
+      <select name="select" v-model="selectedCity">
+        <option v-for="city in cities">{{ city }}</option>
       </select>
-      <button @click="">Show</button>
+      <router-link v-bind:to="'/WeatherShow/' + selectedCity">Go</router-link>
     </div>
   </div>
   <WeatherShow :data="weather"></WeatherShow>
