@@ -3,6 +3,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import App from './components/App.vue';
 import StudentInfo from './components/StudentInfo.vue';
 import Students from './components/Students.vue';
+import store from './store.js';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -22,5 +23,6 @@ const router = createRouter({
 
 createApp(App)
   .component('font-awesome-icon', FontAwesomeIcon)
+  .use(store)
   .use(router)
   .mount('#app');

@@ -30,7 +30,13 @@ export default {
     axios.get(API_HOST + '/students').then((response) => {
       console.log(response.data);
       this.students = response.data;
+      this.$store.commit('setCount', this.students.length);
     });
+  },
+  computed: {
+    studentsCount() {
+      return this.$store.getters.getCount;
+    },
   },
   methods: {
     deleteStudent(Id) {
@@ -68,13 +74,18 @@ export default {
       this.editId = '';
       this.edittingStudent = {};
     },
+    toggleLightMode() {
+      this.$store.commit('toggleIsDark');
+    },
   },
 };
 </script>
 
 <template>
   <div>
+    <h2>Students count: {{ studentsCount }}</h2>
     <label> Пошук: <input type="text" name="search" v-model="search" /></label>
+    <button @click="toggleLightMode">Toggle Light</button>
     <table class="table table-dark">
       <tr v-for="(item, key) in students" v-bind:key="item._id">
         <Student
