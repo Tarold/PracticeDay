@@ -1,28 +1,20 @@
 import { createApp } from 'vue';
-import { createRouter, createWebHashHistory } from 'vue-router';
-import App from './components/App.vue';
-import StudentInfo from './components/StudentInfo.vue';
-import Students from './components/Students.vue';
-import store from './store.js';
+import { createRouter, createWebHashHistory } from 'vue-router'; 
 
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTrash, faPen } from '@fortawesome/free-solid-svg-icons';
-
-library.add(faTrash, faPen);
+import App from './components/App.vue'
+import ProductInfo from './components/ProductInfo.vue'
+import ProductsList from './components/ProductsList.vue'
 
 const routes = [
-  { path: '/', component: Students },
-  { path: '/student-info/:id', component: StudentInfo, props: true },
-];
+    { path: '/', component: ProductsList },
+    { path: '/product/:id', component: ProductInfo }
+]
 
 const router = createRouter({
-  history: createWebHashHistory(),
-  routes,
-});
+    history: createWebHashHistory(),
+    routes,
+})
 
 createApp(App)
-  .component('font-awesome-icon', FontAwesomeIcon)
-  .use(store)
-  .use(router)
-  .mount('#app');
+.use(router)
+.mount('#app');

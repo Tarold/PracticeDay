@@ -1,52 +1,35 @@
-const path = require('path');
-const webpack = require('webpack');
-const { VueLoaderPlugin } = require('vue-loader');
-const Dotenv = require('dotenv-webpack');
+const path = require('path')
+const webpack = require("webpack");
+const { VueLoaderPlugin } = require("vue-loader");
 
 module.exports = {
-  context: path.resolve(__dirname, 'src'),
-  entry: './main.js',
-  module: {
-    rules: [
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
+    entry: './src/main.js',
+    resolve: {
+        alias: {
+          vue: "vue/dist/vue.esm-bundler",
+        },
       },
-      {
-        test: /\.css$/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1,
-              modules: {
-                localIdentName: '[local]',
-              },
+      devServer: {
+        static: path.join(__dirname, "src"),
+        compress: true,
+        port: 8081,
+      },
+    module: {
+        rules: [
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader'
             },
-          },
-        ],
-      },
-    ],
-  },
-  resolve: {
-    alias: {
-      vue: 'vue/dist/vue.esm-bundler',
+            {
+                test: /\.css$/,
+                use: [
+                    'vue-style-loader',
+                    'css-loader'
+                ]
+            }
+        ]
     },
-  },
-  devServer: {
-    static: path.join(__dirname, 'src'),
-    compress: true,
-    port: 8080,
-  },
-  plugins: [
-    new webpack.DefinePlugin({
-      __VUE_OPTIONS_API__: true,
-      __VUE_PROD_DEVTOOLS__: false,
-    }),
-    new VueLoaderPlugin(),
-    new Dotenv(),
-  ],
-};
+    plugins: [
+        new VueLoaderPlugin(),
+    ]
+}
